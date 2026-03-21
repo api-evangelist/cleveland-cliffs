@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: Cleveland-Cliffs API
+  description: >-
+    Cleveland-Cliffs is the largest flat-rolled steel producer in North
+    America. This is a placeholder specification as Cleveland-Cliffs does
+    not currently publish a public developer API.
+  version: 1.0.0
+  contact:
+    name: Cleveland-Cliffs
+    url: https://www.clevelandcliffs.com
+servers:
+  - url: https://www.clevelandcliffs.com
+    description: Cleveland-Cliffs Website
+paths: {}
