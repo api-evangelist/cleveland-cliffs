@@ -1,16 +1,14 @@
 aid: cleveland-cliffs
-url: 
-  https://raw.githubusercontent.com/api-evangelist/cleveland-cliffs/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/cleveland-cliffs/refs/heads/main/apis.yml
 apis:
   - aid: cleveland-cliffs:website
     name: Cleveland-Cliffs Website
     tags:
-      - Steel
       - Iron Ore
-      - Mining
       - Manufacturing
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Mining
+      - Steel
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://www.clevelandcliffs.com
     humanURL: https://www.clevelandcliffs.com
     properties:
