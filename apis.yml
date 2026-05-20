@@ -53,6 +53,8 @@ artifacts:
       Public investor relations portal with SEC filings, financial reports,
       press releases, and earnings call materials.
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/cleveland-cliffs
   - type: Website
     url: https://www.clevelandcliffs.com
   - type: Investor Relations
