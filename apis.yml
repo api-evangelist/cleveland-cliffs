@@ -69,7 +69,7 @@ common:
     url: https://www.clevelandcliffs.com/contact-us
   - type: PrivacyPolicy
     url: https://www.clevelandcliffs.com/privacy-policy
-  - type: Terms of Use
+  - type: TermsOfService
     url: https://www.clevelandcliffs.com/terms-of-use
 maintainers:
   - FN: Kin Lane
