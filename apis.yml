@@ -53,6 +53,8 @@ artifacts:
       Public investor relations portal with SEC filings, financial reports,
       press releases, and earnings call materials.
 common:
+  - type: DomainSecurity
+    url: security/cleveland-cliffs-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/cleveland-cliffs
   - type: Website
@@ -71,6 +73,8 @@ common:
     url: https://www.clevelandcliffs.com/privacy-policy
   - type: TermsOfService
     url: https://www.clevelandcliffs.com/terms-of-use
+  - url: https://www.clevelandcliffs.com/news/news-releases/rss
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
