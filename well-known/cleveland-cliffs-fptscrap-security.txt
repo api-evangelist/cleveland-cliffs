@@ -1,0 +1,14 @@
+# Our security contact link
+Contact: https://www.clevelandcliffs.com/contact
+
+# Our expiration date
+Expires: 2024-12-31T22:59:00.000Z
+
+# Our preferred language
+Preferred-Languages: en
+
+# Our Canonical URI
+Canonical: https://portal.fptscrap.com/.well-known/security.txt
+
+# Our Hiring URI
+Hiring: https://www.fptscrap.com/careers/

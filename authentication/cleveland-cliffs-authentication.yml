@@ -1,0 +1,77 @@
+generated: '2026-09-05'
+method: probed
+source: https://login.clevelandcliffs.com/.well-known/openid-configuration
+docs: https://www.clevelandcliffs.com/doing-business
+note: >-
+  Cleveland-Cliffs publishes no developer API and therefore no API-key or bearer-token contract.
+  It does operate a first-party identity surface: an Okta tenant on its own vanity domain
+  login.clevelandcliffs.com, whose OIDC discovery document and RFC 8414 authorization-server
+  metadata are served anonymously and declare issuer https://login.clevelandcliffs.com. That is
+  the only machine-readable authentication contract the company publishes. It fronts the
+  employee/partner applications, not a public API. The B2B integration surface (EDI over SFTP
+  or an IBM Sterling VAN) authenticates out of band with SFTP credentials and trading-partner
+  IDs negotiated bilaterally, and the four portal applications (Outside Processors, iSupplier,
+  Customer Service Center, Vendor Inquiry) each present their own username/password form.
+summary:
+  types: [openIdConnect, oauth2]
+  api_key_in: []
+  oauth2_flows: [authorizationCode, implicit, clientCredentials, deviceCode, ciba, refreshToken]
+  public_api_auth: none-published
+schemes:
+  - name: cleveland-cliffs-okta-oidc
+    type: openIdConnect
+    openIdConnectUrl: https://login.clevelandcliffs.com/.well-known/openid-configuration
+    issuer: https://login.clevelandcliffs.com
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+    endpoints:
+      authorization: https://login.clevelandcliffs.com/oauth2/v1/authorize
+      token: https://login.clevelandcliffs.com/oauth2/v1/token
+      userinfo: https://login.clevelandcliffs.com/oauth2/v1/userinfo
+      jwks: https://login.clevelandcliffs.com/oauth2/v1/keys
+      revocation: https://login.clevelandcliffs.com/oauth2/v1/revoke
+      introspection: https://login.clevelandcliffs.com/oauth2/v1/introspect
+      end_session: https://login.clevelandcliffs.com/oauth2/v1/logout
+      device_authorization: https://login.clevelandcliffs.com/oauth2/v1/device/authorize
+      pushed_authorization_request: https://login.clevelandcliffs.com/oauth2/v1/par
+      dynamic_client_registration: https://login.clevelandcliffs.com/oauth2/v1/clients
+    id_token_signing_alg_values_supported: [RS256]
+    token_endpoint_auth_methods_supported:
+      - client_secret_basic
+      - client_secret_post
+      - client_secret_jwt
+      - private_key_jwt
+      - none
+    code_challenge_methods_supported: [S256]
+    dpop_signing_alg_values_supported: [RS256, RS384, RS512, ES256, ES384, ES512]
+  - name: cleveland-cliffs-okta-oauth2
+    type: oauth2
+    sources: [well-known/cleveland-cliffs-oauth-authorization-server.json]
+    issuer: https://login.clevelandcliffs.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://login.clevelandcliffs.com/oauth2/v1/authorize
+        tokenUrl: https://login.clevelandcliffs.com/oauth2/v1/token
+      - flow: clientCredentials
+        tokenUrl: https://login.clevelandcliffs.com/oauth2/v1/token
+      - flow: deviceCode
+        deviceAuthorizationUrl: https://login.clevelandcliffs.com/oauth2/v1/device/authorize
+        tokenUrl: https://login.clevelandcliffs.com/oauth2/v1/token
+      - flow: implicit
+        authorizationUrl: https://login.clevelandcliffs.com/oauth2/v1/authorize
+out_of_band:
+  - surface: EDI (X12 4010) for outside processors
+    transport: SFTP preferred; third-party VAN via IBM Sterling Supply Chain Business Network Hub
+    auth: SFTP credentials / trading-partner identifiers exchanged bilaterally during onboarding
+    docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+  - surface: Outside Processors Portal
+    auth: username + password form
+    url: https://op.cliffssteel.com
+  - surface: iSupplier Portal
+    auth: username + password form
+    url: https://isupplier.cliffssteel.com
+  - surface: Customer Service Center (mill test certificates)
+    auth: username + password form
+    url: https://cert.cliffssteel.com
+  - surface: Vendor Inquiry (AP / invoice status)
+    auth: username + password form
+    url: https://www.clevelandcliffs.us/vendor_inquiry/

@@ -1,0 +1,25 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+note: >-
+  No API, so no API versioning policy, deprecation policy, Sunset header support, SLA or status
+  page. The only version declaration Cleveland-Cliffs publishes for a machine interface is the
+  X12 release its EDI specifications target. Searched the corporate site (756 sitemap URLs), the
+  doing-business section and common status-page hosts; nothing found. Recorded as absent rather
+  than omitted.
+versioning:
+  scheme: standard-release
+  current: ANSI ASC X12 version 4010
+  docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: no deprecation or sunset policy published
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_probes:
+  - {url: 'https://status.clevelandcliffs.com', result: NXDOMAIN}
+  - {url: 'https://www.clevelandcliffs.com/sitemap.xml', http_status: 200, result: no status or uptime page among 756 URLs}
+deprecated_operations: []

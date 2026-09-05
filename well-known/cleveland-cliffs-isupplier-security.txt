@@ -1,0 +1,11 @@
+# Canonical URI
+
+Canonical: https://clevelandcliffs.com/.well-known/security.txt
+
+# Language preferred is English
+Preferred-Languages: en
+ 
+# Our security contact link
+Contact: https://www.clevelandcliffs.com/contact
+ 
+Expires: 2025-12-31T17:59:00.000Z

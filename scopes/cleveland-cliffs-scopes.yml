@@ -1,0 +1,56 @@
+generated: '2026-09-05'
+method: probed
+source: https://login.clevelandcliffs.com/.well-known/openid-configuration
+note: >-
+  Read from the anonymous discovery documents on Cleveland-Cliffs' own Okta tenant. The seven
+  scopes below are the standard OIDC/OAuth 2.0 set the org authorization server advertises.
+  The RFC 8414 document additionally advertises the full Okta org-management scope family
+  (okta.users.*, okta.groups.*, okta.apps.* and ~40 more); those are the Okta product's own
+  administrative scopes, not scopes Cleveland-Cliffs defined for a business API, so they are
+  recorded as vendor_platform_scopes rather than as the company's scope surface. Cleveland-Cliffs
+  publishes no public API and therefore no business-domain scope reference page.
+docs: null
+schemes:
+  - name: cleveland-cliffs-okta-oidc
+    source: well-known/cleveland-cliffs-openid-configuration.json
+    issuer: https://login.clevelandcliffs.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://login.clevelandcliffs.com/oauth2/v1/authorize
+        tokenUrl: https://login.clevelandcliffs.com/oauth2/v1/token
+scopes:
+  - scope: openid
+    description: OIDC authentication; issue an ID token for the authenticated subject.
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: profile
+    description: Standard OIDC profile claims (name, preferred_username, locale, updated_at).
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: email
+    description: Email address and email_verified claim.
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: address
+    description: Postal address claim.
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: phone
+    description: Phone number and phone_number_verified claims.
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: offline_access
+    description: Issue a refresh token so the client can renew access without user presence.
+    flows: [authorizationCode]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+  - scope: groups
+    description: Group membership claim for the authenticated subject.
+    flows: [authorizationCode, implicit]
+    sources: [well-known/cleveland-cliffs-openid-configuration.json]
+vendor_platform_scopes:
+  count: 76
+  source: well-known/cleveland-cliffs-oauth-authorization-server.json
+  note: >-
+    Okta org-management scopes (okta.*) advertised by the tenant's RFC 8414 metadata. These
+    belong to the Okta platform, not to a Cleveland-Cliffs business API, and are listed here
+    only so the discovery document is faithfully represented.

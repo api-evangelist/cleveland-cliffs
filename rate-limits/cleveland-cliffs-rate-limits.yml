@@ -1,0 +1,13 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+limit_count: 0
+note: >-
+  Cleveland-Cliffs publishes no HTTP API, so there is no rate-limit contract, no RateLimit-* or
+  X-RateLimit-* response headers, and no documented 429 behaviour. The EDI surface is batch file
+  transfer over SFTP or an IBM Sterling VAN; the published specifications state no interchange
+  frequency cap, file-size limit or throttling rule. An honest zero, searched on the
+  outside-processors, suppliers and doing-business pages.
+limits: []
+headers: []
+exhaustion_status: null

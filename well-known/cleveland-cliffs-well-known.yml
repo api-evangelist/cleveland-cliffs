@@ -1,0 +1,282 @@
+generated: '2026-09-05'
+method: probed
+source: live GET of the named /.well-known/ path list on every host this record knows
+note: >-
+  Cleveland-Cliffs runs no developer program, but three of its own hosts do serve real
+  discovery documents. login.clevelandcliffs.com is the company's Okta tenant on its own
+  vanity domain and serves a live OIDC discovery document and an RFC 8414 authorization-server
+  metadata document whose issuer is https://login.clevelandcliffs.com. Two portal hosts serve
+  RFC 9116 security.txt at the canonical /.well-known/ path, and the corporate site serves one
+  at the legacy document root. op.cliffssteel.com is a catch-all that answers 200 with the same
+  8,166-byte HTML login page for every path including the negative control, so every hit on that
+  host is discarded.
+hit_count: 5
+hosts:
+  - host: https://www.clevelandcliffs.com
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /security.txt
+        status: 200
+        file: cleveland-cliffs-security.txt
+        note: >-
+          Real RFC 9116 document (text/plain, 83 bytes) served at the legacy document root, not
+          the canonical /.well-known/ path. Carries Contact and Expires only; the Expires value
+          (2025-12-31) has passed.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/cc-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control - path cannot exist; 404 confirms no path echo
+  - host: https://clevelandcliffs.com
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        note: >-
+          The isupplier.cliffssteel.com security.txt declares
+          "Canonical: https://clevelandcliffs.com/.well-known/security.txt" but that URL 404s;
+          the document is actually served at the apex/www document root instead.
+      - path: /security.txt
+        status: 200
+        file: cleveland-cliffs-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/cc-negative-control-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://login.clevelandcliffs.com
+    note: >-
+      Cleveland-Cliffs Okta tenant on the company's own vanity domain
+      (CNAME cleveland-cliffs.customdomains.okta.com). The discovery documents declare
+      issuer https://login.clevelandcliffs.com, so they are the company's own identity
+      surface rather than a vendor's.
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: cleveland-cliffs-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: cleveland-cliffs-oauth-authorization-server.json
+      - path: /.well-known/security.txt
+        status: 405
+      - path: /.well-known/oauth-protected-resource
+        status: 405
+      - path: /.well-known/api-catalog
+        status: 405
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://isupplier.cliffssteel.com
+    note: iSupplier portal for Cleveland-Cliffs Steel Corporation suppliers (login-gated app).
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: cleveland-cliffs-isupplier-security.txt
+        note: >-
+          RFC 9116 document with Contact, Preferred-Languages, Canonical and Expires.
+          Expires 2025-12-31 - already elapsed.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://portal.fptscrap.com
+    note: >-
+      Ferrous Processing and Trading supplier portal. FPT is a Cleveland-Cliffs subsidiary
+      (acquired November 2021) and the portal is listed by Cleveland-Cliffs itself at
+      https://www.clevelandcliffs.com/doing-business/for-suppliers, which is why a
+      non-clevelandcliffs.com domain is in scope here.
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: cleveland-cliffs-fptscrap-security.txt
+        note: >-
+          RFC 9116 document with Contact (pointing back at clevelandcliffs.com/contact),
+          Expires, Preferred-Languages, Canonical and Hiring. Expires 2024-12-31 - elapsed.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://op.cliffssteel.com
+    note: >-
+      Outside Processors Portal. CATCH-ALL - every probed path returned HTTP 200 with the
+      identical 8,166-byte "Cleveland-Cliffs Steel Website" HTML login page, including the
+      negative control. No document was saved from this host and no hit is recorded.
+    path_echo_control: failed
+    soft_404_control:
+      path: /.well-known/cc-neg-7f3ab91c.json
+      status: 200
+      bytes: 8166
+      content_type: text/html
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /.well-known/agent-card.json
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /.well-known/agent.json
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /.well-known/api-catalog
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /apis.json
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /openapi.json
+        status: 200
+        note: HTML login shell, not a document - discarded
+      - path: /llms.txt
+        status: 200
+        note: HTML login shell, not a document - discarded
+  - host: https://cert.cliffssteel.com
+    note: Cliffs Customer Service Center (mill test certificate lookup); login-gated.
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://www.clevelandcliffs.us
+    note: Vendor Inquiry portal (accounts payable / invoice status) for Cleveland-Cliffs Steel LLC.
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404
+  - host: https://www.cliffssteel.com
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /.well-known/cc-neg-7f3ab91c.json
+        status: 404
+        note: negative control - 404

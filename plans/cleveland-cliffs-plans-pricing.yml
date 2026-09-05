@@ -1,0 +1,23 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.clevelandcliffs.com/doing-business/for-customers
+plan_count: 0
+note: >-
+  There are no API plans, quotas, tiers or overages because there is no API and no developer
+  program. Cleveland-Cliffs does publish commercial pricing for its physical product - a public
+  Price Book and monthly surcharge tables for stainless, electrical, tubular and tube products as
+  dated PDFs, plus published Terms and Conditions of Sale. That is recorded below as the company's
+  real published commercial surface, and it is explicitly NOT an API price list. Everything else
+  is quoted through sales (https://www.clevelandcliffs.com/doing-business/contact-sales).
+plans: []
+product_pricing:
+  published: true
+  page: https://www.clevelandcliffs.com/doing-business/for-customers
+  http_status: 200
+  form: dated PDF price book and monthly surcharge tables
+  examples:
+    - {name: Cleveland-Cliffs Price Book 2026, url: 'https://d1io3yog0oux5.cloudfront.net/_568d29bf75311a73776598d287016ce3/clevelandcliffs/files/pages/clevelandcliffs/db/1184/description/CLF_PriceBook_2026_09182025.pdf'}
+    - {name: Surcharge table - Stainless (Sept 2026), url: 'https://www.clevelandcliffs.com/_assets/_d252115d58f161704147775f45c8cf6d/clevelandcliffs/db/1185/12010/description/CLF_SurchargeTable_Stainless_092026.pdf'}
+    - {name: Surcharge table - Electrical (Oct 2026), url: 'https://www.clevelandcliffs.com/_assets/_a633a2ae81aed054642af0480f020f83/clevelandcliffs/db/1185/12008/description/CLF_SurchargeTable_Electrical_102026.pdf'}
+    - {name: Surcharge table - Tubular (Sept 2026), url: 'https://www.clevelandcliffs.com/_assets/_1389acab9e7dd7248c6296bdb47f6355/clevelandcliffs/db/1185/12011/description/CLF_SurchargeTable_Tubular_092026.pdf'}
+  terms: https://d1io3yog0oux5.cloudfront.net/_53a7e60c79013c72f15ab964823c3005/clevelandcliffs/files/pages/clevelandcliffs/db/1186/description/Cleveland-Cliffs_Steel_Terms_and_Conditions_of_Sale_%287.1.2025%29.pdf

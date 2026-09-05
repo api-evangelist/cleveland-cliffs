@@ -1,0 +1,24 @@
+generated: '2026-09-05'
+method: searched
+source: registry search
+note: >-
+  No first-party client library exists, and none is expected - there is no API to wrap. Recorded so
+  the search is auditable rather than assumed. github.com/Cleveland-Cliffs is a real GitHub
+  organization named "Cleveland-Cliffs Inc." (created 2022-09-19) but publishes zero public
+  repositories and carries no link back to clevelandcliffs.com, so it is noted here rather than
+  wired as a GitHubOrganization pointer.
+packages: []
+registries_probed:
+  - {registry: npm, query: cleveland-cliffs, result: no first-party package}
+  - {registry: pypi, query: cleveland-cliffs, http_status: 404}
+  - {registry: rubygems, query: cleveland-cliffs, result: none}
+  - {registry: crates.io, query: cleveland-cliffs, result: none}
+  - {registry: nuget, query: cleveland-cliffs, result: none}
+  - {registry: maven-central, query: clevelandcliffs, result: none}
+  - {registry: pkg.go.dev, query: clevelandcliffs, result: none}
+  - {registry: packagist, query: cleveland-cliffs, result: none}
+github:
+  org: https://github.com/Cleveland-Cliffs
+  api_status: 200
+  public_repos: 0
+  verified_first_party: false

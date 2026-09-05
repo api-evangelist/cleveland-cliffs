@@ -1,0 +1,113 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.clevelandcliffs.com/doing-business/for-outside-processors ;
+  https://www.clevelandcliffs.com/doing-business/product-compliance ;
+  https://login.clevelandcliffs.com/.well-known/openid-configuration
+note: >-
+  Cleveland-Cliffs publishes no OpenAPI, so nothing here is derived from a contract file. Each
+  entry below is either a standard the company names explicitly on its own public pages, or a
+  discovery document fetched anonymously from a host it controls. Standards with no evidence
+  are recorded conforms:false rather than omitted, so a later run can show movement.
+standards:
+  - id: ansi-x12-4010
+    name: ANSI ASC X12 version 4010
+    conforms: true
+    evidence: >-
+      "The electronic data interchange (EDI) specifications for Burns Harbor, Cleveland, Indiana
+      Harbor and Kote are compliant with ANSI X12 Version 4010." - stated on
+      https://www.clevelandcliffs.com/doing-business/for-outside-processors, backed by 23
+      publicly downloadable Cleveland-Cliffs implementation guidelines (810, 846, 856, 861, 863,
+      867, 870 transaction sets) and an X12 transaction testing template.
+    domain_standard: true
+    market: automotive and industrial steel supply chain
+    artifact: conventions/cleveland-cliffs-conventions.yml
+  - id: openid-connect-discovery-1.0
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: >-
+      HTTP 200 application/json at
+      https://login.clevelandcliffs.com/.well-known/openid-configuration, issuer
+      https://login.clevelandcliffs.com; negative-control path on the same host returned 404.
+    artifact: well-known/cleveland-cliffs-openid-configuration.json
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: >-
+      authorization, token, revocation and introspection endpoints advertised by the tenant's
+      discovery documents; grant types include authorization_code, client_credentials,
+      refresh_token and device_code.
+    artifact: authentication/cleveland-cliffs-authentication.yml
+  - id: rfc8414-oauth-authorization-server-metadata
+    name: RFC 8414 OAuth 2.0 Authorization Server Metadata
+    conforms: true
+    evidence: >-
+      HTTP 200 application/json at
+      https://login.clevelandcliffs.com/.well-known/oauth-authorization-server
+    artifact: well-known/cleveland-cliffs-oauth-authorization-server.json
+  - id: rfc7636-pkce
+    name: RFC 7636 PKCE
+    conforms: true
+    evidence: 'code_challenge_methods_supported: ["S256"] in the OIDC discovery document'
+  - id: rfc9126-pushed-authorization-requests
+    name: RFC 9126 Pushed Authorization Requests
+    conforms: true
+    evidence: >-
+      pushed_authorization_request_endpoint https://login.clevelandcliffs.com/oauth2/v1/par
+      advertised in the discovery document
+  - id: rfc9449-dpop
+    name: RFC 9449 DPoP
+    conforms: true
+    evidence: >-
+      dpop_signing_alg_values_supported [RS256, RS384, RS512, ES256, ES384, ES512] advertised in
+      the discovery document
+  - id: rfc9116-security-txt
+    name: RFC 9116 security.txt
+    conforms: partial
+    evidence: >-
+      Real RFC 9116 documents served at https://isupplier.cliffssteel.com/.well-known/security.txt
+      and https://portal.fptscrap.com/.well-known/security.txt, and at the legacy document root
+      https://www.clevelandcliffs.com/security.txt. Partial for three reasons - the corporate
+      site serves it at /security.txt rather than the required /.well-known/ path; the Canonical
+      URI the iSupplier document declares (https://clevelandcliffs.com/.well-known/security.txt)
+      returns 404; and every copy has an Expires value in the past (2024-12-31 and 2025-12-31).
+    artifact: well-known/cleveland-cliffs-well-known.yml
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: no HTTP API published
+  - id: openapi
+    conforms: false
+    evidence: >-
+      no OpenAPI/Swagger document found on any Cleveland-Cliffs host after probing
+      /openapi.json, /openapi.yaml, /swagger.json, /api-docs, /docs and /redoc on nine hosts
+  - id: asyncapi
+    conforms: false
+    evidence: no event or streaming surface published
+  - id: graphql
+    conforms: false
+    evidence: no /graphql surface found
+  - id: soap-wsdl
+    conforms: false
+    evidence: >-
+      ?wsdl probed on every reachable Cleveland-Cliffs host; no WSDL returned.
+      soa.clevelandcliffs.com resolves but does not answer on 443.
+  - id: scim
+    conforms: false
+    evidence: no SCIM surface published for third parties
+  - id: iso-20022
+    conforms: false
+    evidence: financial messaging not published; invoicing is X12 810
+certifications:
+  note: >-
+    Quality, laboratory and pressure-equipment certifications the company publishes as dated PDF
+    downloads with expiry dates. These are product/quality accreditations, not information-security
+    certifications - Cleveland-Cliffs publishes no SOC 2, ISO 27001, PCI DSS or FedRAMP posture and
+    operates no security trust center.
+  source: https://www.clevelandcliffs.com/doing-business/product-compliance
+  published:
+    - IATF 16949 (multiple operations - Burns Harbor, Butler Works, Fleetwood Metal, Cannon Automotive, Electromac)
+    - ISO 9001 (multiple operations)
+    - ISO/IEC 17025 via A2LA accreditation (Burns Harbor, Butler Works)
+    - PED (Pressure Equipment Directive) certificate - Burns Harbor
+    - ABS Maritime Applications certificate - Burns Harbor
+  security_certifications: []

@@ -24,7 +24,7 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 created: '2026-03-21'
-modified: '2026-04-26'
+modified: '2026-09-05'
 type: Index
 access: 3rd-Party
 position: Consuming
@@ -44,11 +44,45 @@ description: >-
   supplier of iron ore pellets, operating an integrated business spanning
   mining, steelmaking, and downstream finishing for the automotive,
   infrastructure, and manufacturing markets. Cleveland-Cliffs does not
-  publish a public developer portal or general-purpose REST API surface.
-  Programmatic interaction with the company is limited to investor and
-  customer touchpoints (corporate website, investor relations, customer
-  service, EDI for trading partners).
-apis: []
+  publish a public developer portal, an OpenAPI/GraphQL contract, or any
+  general-purpose REST API. Its documented machine-to-machine surface is batch
+  EDI: ANSI ASC X12 version 4010 over SFTP or an IBM Sterling VAN, with 23
+  implementation guidelines and an X12 testing template published as public
+  downloads for outside processors at Burns Harbor, Cleveland, Indiana Harbor
+  and Kote. Its transactional applications (Outside Processors Portal,
+  iSupplier, Customer Service Center, Vendor Inquiry) are login-gated, and the
+  only machine-readable discovery documents it serves are OIDC and RFC 8414
+  metadata on its own Okta tenant at login.clevelandcliffs.com plus an RFC 9116
+  security.txt.
+apis:
+  - aid: cleveland-cliffs:edi
+    name: Cleveland-Cliffs EDI (ANSI X12 4010)
+    tags:
+      - EDI
+      - X12
+      - Supply Chain
+      - Integration
+      - Steel
+    humanURL: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cleveland-cliffs.png
+    properties:
+      - url: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+        type: Documentation
+      - url: conventions/cleveland-cliffs-conventions.yml
+        type: Conventions
+      - url: conformance/cleveland-cliffs-conformance.yml
+        type: Conformance
+      - url: sandbox/cleveland-cliffs-sandbox.yml
+        type: Sandbox
+      - url: https://op.cliffssteel.com
+        type: Portal
+    description: >-
+      Batch EDI trading-partner interface for outside processors at Burns Harbor, Cleveland,
+      Indiana Harbor and Kote, compliant with ANSI ASC X12 version 4010 over SFTP or an IBM
+      Sterling VAN. Cleveland-Cliffs publishes 23 implementation guidelines (810, 846, 856,
+      861, 863, 867 and 870 transaction sets) and an X12 transaction testing template as public
+      downloads; the Outside Processors Portal itself requires sign-in. This is the company's
+      only documented machine-to-machine interface - there is no HTTP API.
 artifacts:
   - aid: cleveland-cliffs:website
     name: Cleveland-Cliffs Website
@@ -90,13 +124,48 @@ common:
   - type: Careers
     url: https://www.clevelandcliffs.com/careers
   - type: Contact
-    url: https://www.clevelandcliffs.com/contact-us
+    url: https://www.clevelandcliffs.com/contact
   - type: PrivacyPolicy
     url: https://www.clevelandcliffs.com/privacy-policy
   - type: TermsOfService
-    url: https://www.clevelandcliffs.com/terms-of-use
+    url: https://www.clevelandcliffs.com/disclaimer
   - url: https://www.clevelandcliffs.com/news/news-releases/rss
     type: Blog
+  - type: Documentation
+    url: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+  - type: Pricing
+    url: https://www.clevelandcliffs.com/doing-business/for-customers
+  - type: Compliance
+    url: https://www.clevelandcliffs.com/doing-business/product-compliance
+  - type: WellKnown
+    url: well-known/cleveland-cliffs-well-known.yml
+  - type: SecurityTxt
+    url: well-known/cleveland-cliffs-security.txt
+  - type: Authentication
+    url: authentication/cleveland-cliffs-authentication.yml
+  - type: OAuthScopes
+    url: scopes/cleveland-cliffs-scopes.yml
+  - type: Conformance
+    url: conformance/cleveland-cliffs-conformance.yml
+  - type: Conventions
+    url: conventions/cleveland-cliffs-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/cleveland-cliffs-lifecycle.yml
+  - type: Plans
+    url: plans/cleveland-cliffs-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cleveland-cliffs-rate-limits.yml
+  - type: VulnerabilityDisclosure
+    url: security/cleveland-cliffs-vulnerability-disclosure.yml
+  - type: Security
+    url: https://www.clevelandcliffs.com/security.txt
+  - type: LLMsTxt
+    url: llms/cleveland-cliffs-llms.txt
 maintainers:
   - FN: Kin Lane
     email: kinlane@gmail.com
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v3

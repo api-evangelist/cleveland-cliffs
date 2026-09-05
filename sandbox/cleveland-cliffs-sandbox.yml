@@ -1,0 +1,33 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+note: >-
+  There is no API sandbox, no test/live key separation and no hosted console, because there is no
+  API. What Cleveland-Cliffs does publish is an EDI onboarding test path: a downloadable X12
+  transaction testing template enumerating every transaction currently in use at the four plants,
+  with the stated rule that business requirements decide which transactions and test cases must be
+  tested. No test values, magic identifiers or credentials are published - onboarding test partner
+  IDs are exchanged bilaterally.
+test_live_separation: none-published
+key_prefixes: []
+test_values: []
+fixtures:
+  - name: X12 transaction testing template
+    format: application/vnd.ms-excel (.xls)
+    url: https://d1io3yog0oux5.cloudfront.net/clevelandcliffs/files/pages/clevelandcliffs/db/1183/description/x12-transaction-testing-template.xls
+    http_status: 200
+    bytes: 25088
+    description: >-
+      "The testing template provides a list of all available transactions currently in use at our
+      Burns Harbor, Cleveland, Indiana Harbor and Kote plants. Business requirements will dictate
+      which of these transactions and test cases will need to be tested, but all of our
+      specifications are available on this page."
+test_environments:
+  - name: EDI certification / test interchange
+    access: bilateral - arranged during trading-partner onboarding
+    self_service: false
+  - name: Cliffs Customer Service Center (cert.cliffssteel.com)
+    note: >-
+      Despite the hostname, this is the production mill-test-certificate lookup application, not a
+      certification/test environment. Login-gated (HTTP 200, "Cliffs CSC Login").
+    self_service: false

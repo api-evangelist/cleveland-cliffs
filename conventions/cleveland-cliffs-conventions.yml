@@ -1,0 +1,121 @@
+generated: '2026-09-05'
+method: searched
+source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+note: >-
+  Cleveland-Cliffs has no REST/HTTP API and therefore no HTTP request/response conventions to
+  capture. Its documented machine-to-machine surface is batch EDI: ANSI ASC X12 version 4010
+  over SFTP (preferred) or a third-party VAN, with the company's own implementation guidelines
+  published as 23 public PDFs plus a testing template. This file records the conventions of that
+  surface, so the profile carries the real integration semantics rather than an empty HTTP shape.
+surface: edi-batch
+transport:
+  primary: SFTP
+  alternative: third-party value-added network (VAN)
+  provider: IBM Sterling Supply Chain Business Network Hub - Cloud Services
+  note: All EDI translation and communication utilizes the IBM network.
+  source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+authentication:
+  style: out-of-band
+  detail: >-
+    SFTP credentials and trading-partner identifiers exchanged bilaterally during onboarding.
+    No public self-service credential issuance. See authentication/cleveland-cliffs-authentication.yml.
+versioning:
+  scheme: standard-release
+  current: ANSI ASC X12 version 4010
+  applies_to: [Burns Harbor, Cleveland, Indiana Harbor, Kote]
+  source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+pagination:
+  applicable: false
+  reason: batch interchange, not a paged HTTP collection
+error_envelope:
+  style: x12-acknowledgement
+  detail: >-
+    The published guideline set does not include a 997 Functional Acknowledgement guideline, and
+    Cleveland-Cliffs does not publish an error-code reference. 870-12 (order status hold/release
+    acknowledgement) and 867-3 (product transfer reapplication acknowledgement) are the only
+    acknowledgement transactions in the published catalog. Recorded as documented-partially.
+  documented: partial
+rate_limit_signaling:
+  applicable: false
+  reason: no synchronous request surface; see rate-limits/cleveland-cliffs-rate-limits.yml
+idempotency:
+  coverage: none
+  supported: false
+  mechanism: null
+  detail: >-
+    No idempotency key, replay-protection header, or duplicate-interchange policy appears in the
+    published EDI specifications or on any Cleveland-Cliffs integration page. X12 interchange
+    control numbers (ISA13/GS06/ST02) exist at the envelope level in every X12 implementation,
+    but Cleveland-Cliffs publishes no statement about how duplicates are detected or rejected, so
+    no replay guarantee can be claimed on their behalf.
+  scope: []
+reversibility:
+  grade: documented
+  detail: >-
+    The published transaction catalog includes real correction and reversal transactions, but the
+    guidelines are per-transaction implementation specs and no page states a time window inside
+    which a correction is accepted. A reversal path exists; a stated window does not, so this
+    grades `documented` rather than `verified`.
+  operations:
+    - write_surface: inventory position (846-1 Inventory handoff)
+      reversal: 870-10 Inventory maintenance/correction
+      window: null
+      docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+    - write_surface: product transfer (867-1 / 867-2 Product transfer)
+      reversal: 867-2 Product transfer (reapplication)
+      acknowledgement: 867-3 Product transfer (reapplication acknowledgement)
+      window: null
+      docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+    - write_surface: receipt (861 Receipt advice)
+      reversal: 861-3 Receipt advice (returned material)
+      window: null
+      docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+    - write_surface: order status
+      reversal: 870-2 Order status (hold/release)
+      acknowledgement: 870-12 Order status (hold/release acknowledgement)
+      window: null
+      docs: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+dry_run_mode:
+  supported: true
+  detail: >-
+    Cleveland-Cliffs publishes an X12 transaction testing template listing every transaction
+    currently in use at Burns Harbor, Cleveland, Indiana Harbor and Kote, and states that business
+    requirements dictate which transactions and test cases must be tested before production.
+    See sandbox/cleveland-cliffs-sandbox.yml.
+  source: https://www.clevelandcliffs.com/doing-business/for-outside-processors
+messaging:
+  standard: ANSI ASC X12
+  version: '4010'
+  guideline_base_url: https://d1io3yog0oux5.cloudfront.net/clevelandcliffs/files/pages/clevelandcliffs/db/1181/description/
+  guideline_count: 23
+  inbound:
+    - {set: '810', variant: 810-1, title: Invoice from processor, guide: 810-1_Cliffs_InvoicefromProcessor.pdf}
+    - {set: '846', variant: 846-1, title: Inventory handoff (including in transit material), guide: 846-1_Cliffs_InventoryHandoff.pdf}
+    - {set: '856', variant: 856-3, title: Advance ship notice (processor sourced coil-complete load), guide: 856-3_Cliffs_Advance-Ship-Notice_CoilCompleteLoad.pdf}
+    - {set: '856', variant: 856-4, title: Advance ship notice (processor sourced lift-combination load), guide: 856-4_Cliffs_Advance-Ship-Notice_LiftCombinationLoad.pdf}
+    - {set: '856', variant: 856-7, title: Advance ship notice (trip title/stock transfer), guide: 856-7_Cliffs_Advance-Ship-Notice_TripTitleStockTransfer.pdf}
+    - {set: '861', variant: 861-1, title: Receipt advice (mill sourced coil, scale weight difference and damage fault/code), guide: 861-1_Cliffs_ReceiptAdvice_MillSourcedCoil.pdf}
+    - {set: '861', variant: 861-2, title: Receipt advice (processor sourced lift, scale weight difference and damage fault/code), guide: 861-2_Cliffs_ReceiptAdvice_ProcessorSourcedLift+%281%29.pdf}
+    - {set: '861', variant: 861-3, title: Receipt advice (returned material), guide: 861-3_Cliffs_ReceiptAdvice_ReturnedMaterial.pdf}
+    - {set: '867', variant: 867-2, title: Product transfer (reapplication), guide: 867-2_Cliffs_ProductTransfer_Reapplication.pdf}
+    - {set: '867', variant: 867-3, title: Product transfer (reapplication acknowledgement), guide: 867-3_Cliffs_ProductTransfer_ReapplicationAcknowledgement.pdf}
+    - {set: '870', variant: 870-2, title: Order status (hold/release), guide: 870-2_Cliffs_OrderStatus_HoldRelease+%281%29.pdf}
+    - {set: '870', variant: 870-3, title: Production reporting (single charge, no scrap), guide: 870-3_Cliffs_ProductionReporting_SC_NoScrap.pdf}
+    - {set: '870', variant: 870-4, title: Production reporting (single charge, blanking with scrap), guide: 870-4_Cliffs_ProductionReporting_SC_BlankingwithScrap.pdf}
+    - {set: '870', variant: 870-5, title: Production reporting (coating or paint), guide: 870-5_Cliffs_ProductionReporting_CoatingorPaint.pdf}
+    - {set: '870', variant: 870-6, title: Production reporting (multiple charge, build-up), guide: 870-6_Cliffs_ProductionReporting_MC_BuildUp.pdf}
+    - {set: '870', variant: 870-10, title: Inventory maintenance/correction, guide: 870-10_Cliffs_InventoryMaintenanceCorrection.pdf}
+    - {set: '870', variant: 870-11, title: Scrap by itself production, guide: 870-11_Cliffs_ScrapbyItselfProduction.pdf}
+    - {set: '870', variant: 870-12, title: Order status (hold/release acknowledgement), guide: 870-12_Cliffs_OrderStatus_HoldReleaseAcknowledgement.pdf}
+  outbound:
+    - {set: '856', variant: 856-1, title: Advance ship notice (mill source coil with chemistries), guide: 856-1_Cliffs_AdvanceShipNotice_MillSourceCoil.pdf}
+    - {set: '856', variant: 856-2, title: Advance ship notice (processor source lift with chemistries), guide: 856-2_Cliffs_AdvanceShipNotice_ProcessorSourceLift.pdf}
+    - {set: '863', variant: 863-1, title: Test report (required if customer directed), guide: 863-1_Cliffs_TestReport.pdf}
+    - {set: '867', variant: 867-1, title: Product transfer (reapplication), guide: 867-1_Cliffs_ProductTransfer.pdf}
+    - {set: '870', variant: 870-1, title: Order status (hold/release), guide: 870-1_Cliffs_OrderStatus.pdf}
+cross_links:
+  conformance: conformance/cleveland-cliffs-conformance.yml
+  authentication: authentication/cleveland-cliffs-authentication.yml
+  sandbox: sandbox/cleveland-cliffs-sandbox.yml
+  lifecycle: lifecycle/cleveland-cliffs-lifecycle.yml
+  rate_limits: rate-limits/cleveland-cliffs-rate-limits.yml
