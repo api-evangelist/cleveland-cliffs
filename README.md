@@ -1,4 +1,4 @@
-# Cleveland-Cliffs (cleveland-cliffs)
+# Cleveland-Cliffs
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,47 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Cleveland-Cliffs is North America's largest flat-rolled steel producer and supplier of iron ore pellets, operating an integrated business spanning mining, steelmaking, and downstream finishing for the automotive, infrastructure, and manufacturing markets. Cleveland-Cliffs does not publish a public developer portal or general-purpose REST API surface; programmatic interaction is limited to investor and customer touchpoints (corporate website, investor relations, customer service, EDI for trading partners).
+Cleveland-Cliffs is North America's largest flat-rolled steel producer and supplier of iron ore pellets, operating an integrated business spanning mining, steelmaking, and downstream finishing for the automotive, infrastructure, and manufacturing markets. Cleveland-Cliffs does not publish a public developer portal, an OpenAPI/GraphQL contract, or any general-purpose REST API. Its documented machine-to-machine surface is batch EDI: ANSI ASC X12 version 4010 over SFTP or an IBM Sterling VAN, with 23 implementation guidelines and an X12 testing template published as public downloads for outside processors at Burns Harbor, Cleveland, Indiana Harbor and Kote. Its transactional applications (Outside Processors Portal, iSupplier, Customer Service Center, Vendor Inquiry) are login-gated, and the only machine-readable discovery documents it serves are OIDC and RFC 8414 metadata on its own Okta tenant at login.clevelandcliffs.com plus an RFC 9116 security.txt.
 
-**APIs.json:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/cleveland-cliffs/refs/heads/main/apis.yml)
+**Areas:** Automotive · Iron Ore · Manufacturing · Mining · Steel · Steelmaking · Supply Chain
 
-## Scope
+## Cleveland-Cliffs on APIs.io
 
-- **Type:** Index
-- **x-type:** company
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Cleveland-Cliffs is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cleveland-cliffs/](https://apis.io/providers/cleveland-cliffs/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (1)
 
-Automotive, Iron Ore, Manufacturing, Mining, Steel, Steelmaking, Supply Chain
+- [Cleveland-Cliffs EDI (ANSI X12 4010)](https://apis.io/apis/cleveland-cliffs/edi/) — Batch EDI trading-partner interface for outside processors at Burns Harbor, Cleveland, Indiana Harbor and Kote, compliant with ANSI ASC X12 version 4010…
 
-## APIs
+### Published properties
 
-No public REST APIs are currently published by Cleveland-Cliffs. The artifacts below describe the closest programmatic surfaces available to customers and partners.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Cleveland-Cliffs Website
-Public corporate website covering products, operations, sustainability, and investor information.
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cleveland Cliffs Authentication](https://apis.io/security/cleveland-cliffs/cleveland-cliffs-authentication/)
+- [Cleveland Cliffs Domain Security](https://apis.io/security/cleveland-cliffs/cleveland-cliffs-domain-security/)
+- [Cleveland Cliffs Vulnerability Disclosure](https://apis.io/security/cleveland-cliffs/cleveland-cliffs-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Cleveland Cliffs Scopes](https://apis.io/scopes/cleveland-cliffs/cleveland-cliffs-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cleveland Cliffs Plans Pricing](https://apis.io/plans/cleveland-cliffs/cleveland-cliffs-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cleveland Cliffs Rate Limits](https://apis.io/rate-limits/cleveland-cliffs/cleveland-cliffs-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.clevelandcliffs.com)
+- [Documentation](https://www.clevelandcliffs.com/doing-business/for-outside-processors)
+- [Pricing](https://www.clevelandcliffs.com/doing-business/for-customers)
+- [Blog](https://www.clevelandcliffs.com/news/news-releases/rss)
+- [Security](https://www.clevelandcliffs.com/security.txt)
+- [Compliance](https://www.clevelandcliffs.com/doing-business/product-compliance)
+- [Terms of service](https://www.clevelandcliffs.com/disclaimer)
+- [Privacy policy](https://www.clevelandcliffs.com/privacy-policy)
 
-### Cleveland-Cliffs Investor Relations
-Public investor relations portal with SEC filings, financial reports, press releases, and earnings call materials.
+## API Evangelist rating
 
-- [Investor Relations](https://www.clevelandcliffs.com/investors)
+**Kin Score 29.2** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Common Properties
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 39.5 |
 
-- [Website](https://www.clevelandcliffs.com)
-- [Investor Relations](https://www.clevelandcliffs.com/investors)
-- [Sustainability](https://www.clevelandcliffs.com/sustainability)
-- [Newsroom](https://www.clevelandcliffs.com/news)
-- [Careers](https://www.clevelandcliffs.com/careers)
-- [Contact](https://www.clevelandcliffs.com/contact-us)
-- [Privacy Policy](https://www.clevelandcliffs.com/privacy-policy)
-- [Terms of Use](https://www.clevelandcliffs.com/terms-of-use)
+**Agent readiness 17.6** — agent-aware
 
-## Maintainers
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
 
-- **FN:** Kin Lane
-- **Email:** kinlane@gmail.com
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cleveland-cliffs/](https://apis.io/providers/cleveland-cliffs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cleveland-Cliffs: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cleveland-cliffs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
